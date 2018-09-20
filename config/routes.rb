@@ -14,6 +14,7 @@ Rails.application.routes.draw do
    post 'welcome/uploadFile', to: 'welcome#uploadFile'
  
    get 'welcome/resumedownload', to: 'welcome#resumedownload'
+   
    get 'welcome/tl_content', to: 'welcome#tl_content'
  
    #get 'welcome/upload' #, to: 'welcome#upload'

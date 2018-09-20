@@ -122,7 +122,7 @@ end
     
      puts "Filename #{$name}"
 
-       @url = "/home/pc-swetha/Documents/rubyonrails/upload_resume/public/uploads/" 
+       @url = "/home/pc-swetha/Desktop/ruby_test/public/uploads/" 
 
     #   puts "Filename #{@file_name}"
     puts "URL #{@url}#{$name}"
