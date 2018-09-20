@@ -95,7 +95,7 @@ def uploadFile
 #   end
 #puts "Filename!!!!!!....#{uploaded_io.original_filename}"
    uploaded_io=params[:upload][:file]
-   File.open(Rails.root.join('storage', uploaded_io.original_filename), 'wb') do |file|
+   File.open(Rails.root.join('public', 'system' , uploaded_io.original_filename), 'wb') do |file|
    file.write(uploaded_io.read)
         if uploaded_io.original_filename.match /.docx/
           $name = uploaded_io.original_filename
@@ -122,7 +122,7 @@ end
     
      puts "Filename #{$name}"
 
-       @url = "/home/pc-swetha/Desktop/ruby_test/storage/" 
+       @url = "/home/pc-swetha/Desktop/ruby_test/public/system/" 
 
     #   puts "Filename #{@file_name}"
     puts "URL #{@url}#{$name}"
