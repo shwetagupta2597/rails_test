@@ -357,7 +357,7 @@ end
               # for each page, count the page number and write it
               pdf.go_to_page i+1
                    pdf.move_down 5 # move below the document margin
-                   pdf.text "www.terralogic.com", :align => :center # write the page number and the total page count
+                   pdf.text "www.terralogic.com", :align => :center,:size => 11 # write the page number and the total page count
               }
   end
   end
@@ -439,6 +439,3 @@ end
 #   end
   
 end #<----class end----->
-
-
- 
