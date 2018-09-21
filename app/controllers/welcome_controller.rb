@@ -172,25 +172,37 @@ end
 
 
   def match_pat()
+    puts "Inside match_patttttttttttttttttttt"
+
     @keys=["CV","Cv","cv","RESUME","Resume","resume","Curriculum Vitae","CURRICULUM VITAE","CURRICULAM VITAE"]
     
     @name=[]
+
     for i in 0..4 do #(@contentsArray.length-1)
-    for j in 0..(@keys.length-1) do
-    if $contentsArray[i].match(@keys[j])
-    i+= 1
-    j=-1
-    end
-    end
-    @name[i]=$contentsArray[i]
-    end
-    for i in 0..(@name.length-1)
-    if @name[i].blank? || @name[i].nil? || @name[i].empty?
-    i+=1
-    else
-    $dump_name = @name[i]
-    end
-    end
+        for j in 0..(@keys.length-1) do
+        if $contentsArray[i].match(@keys[j])
+                $contentsArray[i]=""
+        end
+        end
+        @name[i]=$contentsArray[i]
+        puts "Dump_name is #{@name[i]}"
+    
+        end
+    
+        for i in 0..(@name.length-1)
+        if @name[i].blank? || @name[i].nil? || @name[i].empty?
+       # i+=1
+        else
+        $dump_name = @name[i]
+        break
+        end
+    
+        end
+        puts "Dump_name is original #{$dump_name}"
+    
+    
+    
+
     match_pat_title()
     
     end #<----MATCH_PAT end----->
@@ -201,7 +213,8 @@ end
 
   def match_pat_title()
   
-    @match_title=["Career Objective" , "CAREER OBJECTIVE" , "OBJECTIVE:", "OBJECTIVE","Objective","Professional Experience", 
+    @match_title=["Career Objective" , "CAREER OBJECTIVE" ,"CAREER OBJECTIVE:",
+     "OBJECTIVE:", "OBJECTIVE","Objective","Professional Experience", 
   "PROFESSIONAL EXPERIENCE" , "Educational Qualification" , "EDUCATIONAL QUALIFICATION" , 
   "Technical Profile" , "TECHNICAL PROFILE" , "Strengths" , "STRENGTHS" , 
    #"Declaration" , "DECLARATION" , 
@@ -213,7 +226,14 @@ end
   "ACHIEVEMENTS AND ACTIVITIES:" , "ACHIEVEMENTS AND ACTIVITIES" , 
   "Achievements and Activities" , "SOFTWARE/OTHER SKILLS:" , "SOFTWARE/OTHER SKILLS" , 
   "Software Skills" , "SOFTWARE SKILLS" , "POTENTIAL ASSETS:" , "POTENTIAL ASSETS" , 
-  "Potential Assets" 
+  "Potential Assets" , "PERSONAL PROFILE" , "EDUCATIONAL QUALIFICATION:" ,
+  "TECHNICAL QUALIFICATION:" , "VOCATIONAL TRAINNINGS:" , "SUMMER INTERNSHIP:" ,
+  "PROJECTS:" , "PERSONAL QUALITIES:" , "ACHIEVEMENTS:" , "HOBBIES:" , "Objective:" , 
+  "Professional Summary:" , "Education:" , "Technical Expertise:" ,
+   "Job Profile:" , "Project Details:" , "Academic Projects:" , "ACHIEVEMENTS" ,
+   "EDUCATIONAL QUALIFICATIONS:" , "TECHNICAL SKILLS:" , "ACHIEVEMENTS&AWARDS:" , 
+   "CIRCULAR & COCIRCULAR ACTIVITIES:" , "STRENGTHS:" , "HOBIES:" , 
+   "PROJECT:" 
   ]
      #puts "Keys:,#{@keys}, #{@keys.length}"
      #puts "Length:-----#{@contentsArray.length}"
@@ -253,7 +273,8 @@ end
     #@final_title=final_title
     #puts "Inside match_content method"
     #puts "Final Name: #{@dump_name}"
-    puts "Final Title: #{$final_title}"
+    
+    puts "Final Title: #{$final_title.uniq}"
     #puts "Final Content: #{@contentsArray}"
 
     @count=1
@@ -266,6 +287,7 @@ end
          # puts "Value :---- #{@contentsArray[16]}"
 
           $terra_summary.push $contentsArray[j]
+          $terra_summary.uniq
           j=j+1
         end                  
         end #----end of if
@@ -274,7 +296,7 @@ end
     end #------end of for i
 
     puts "\n terra name :---- #{$dump_name}"
-    puts "Terra Summary: #{$terra_summary}"
+    puts "Terra Summary: #{$terra_summary.uniq}"
     resumedownload()
 
    # puts "Summary: #{@terra_summary}"
@@ -369,7 +391,7 @@ end
    pdf.text "#{$dump_name.upcase}" ,:align => :center ,:style => :bold,:size => 19
    pdf.move_down(20)
    #pdf.draw_text "#{$dump_name}", at: [300, 380]
-    pdf.text "#{$terra_summary.join("\n")}" 
+    pdf.text "#{$terra_summary.uniq.join("\n")}" 
    # pdf.text "#{$final_title}" 
 
 
