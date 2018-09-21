@@ -123,13 +123,13 @@ end
      puts "Filename #{$name}"
 
        @url = "/home/pc-swetha/Desktop/ruby_test/public/system/" 
-
+       @url_local = "#{Rails.root}/public/system/"
     #   puts "Filename #{@file_name}"
     puts "URL #{@url}#{$name}"
     
 
 
-       @doc=Docx::Document.open(@url+$name)
+       @doc=Docx::Document.open(@url_local+$name)               #(@url+$name)
 
 
        @str=@doc.to_s
